@@ -1,3 +1,5 @@
+<!DOCTYPE HTML>
+<style>
 }
 
 input[type=checkbox] {
@@ -15,27 +17,55 @@ input[type=submit]:hover {
 }
 </style>
 <body>
+<?php
+if(!isset($_POST['submit']))
+{
 
+echo "error; you need to submit the form!";
+}
+$name = $_POST['name'];
+$visitor_email = $_POST['email'];
+$message = $_POST['message'];
+
+//Validate first
+if(empty($name)||empty($visitor_email)) 
+{
+echo "Name and email are mandatory!";
+exit;
+}
+$email_from = 'tom@amazing-designs.com';//<== update the email address
+$email_subject = "New Form submission";
+$email_body = "You have received a new message from the user $name.\n".
+ "Here is the message:\n $message".
+
+$to = "khan.koder@gmail.com";//<== update the email address
+$headers = "From: $email_from \r\n";
+$headers .= "Reply-To: $visitor_email \r\n";
+
+mail($to,$email_subject,$email_body,$headers);
+
+//done. redirect to thank-you page.
+
+header('Location: thank-you.html');
+
+?> 
 <h2>CSS Newsletter</h2>
 
-<form action="/action_page.php">
-  <div class="container">
-    <h2>Subscribe to our Newsletter</h2>
-    <p>Lorem ipsum text about why you should subscribe to our newsletter blabla. Lorem ipsum text about why you should subscribe to our newsletter blabla.</p>
-  </div>
-
-  <div class="container" style="background-color:white">
-    <input type="text" placeholder="Name" name="name" required>
-    <input type="text" placeholder="Email address" name="mail" required>
-    <label>
-      <input type="checkbox" checked="checked" name="subscribe"> Daily Newsletter
-    </label>
-  </div>
-
-  <div class="container">
-    <input type="submit" value="Subscribe">
-  </div>
-</form>
+<form method="post" name="myemailform" action="form-to-email.php">
+<p>
+    <label for='name'>Enter Name: </label><br>
+    <input type="text" name="name">
+</p>
+<p>
+    <label for='email'>Enter Email Address:</label><br>
+    <input type="text" name="email">
+</p>
+<p>
+    <label for='message'>Enter Message:</label> <br>
+    <textarea name="message"></textarea>
+</p>
+<input type="submit" name='submit' value="submit">
+ </form>
 
 </body>
 </html>
