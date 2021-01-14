@@ -9,15 +9,16 @@
 <div>
     <form action="webform.php" method="POST">
         <button type="submit">send</button>
+        <input type="text" name="message">
     </form>
     <?php
 
 
 
-$to = "";
+$to = "swordfishroblox@gmail.com";
 $subject = "HTML email";
 
-$message = "<h1>Hi</h1>";
+$message = $_POST['message'];
 
 // Always set content-type when sending HTML email
 $headers = "MIME-Version: 1.0" . "\r\n";
