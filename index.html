@@ -1,6 +1,16 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hi</title>
+</head>
+<body>
 
-<?php
+<div>
+    <form action="webform.php" method="POST">
+        <button type="submit">send</button>
+    </form>
+    <?php
 
 
 
@@ -18,15 +28,5 @@ $headers .= 'From: <webmaster@example.com>' . "\r\n";
 
 mail($to,$subject,$message,$headers);
 ?>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-
-<div>
-    <form action="webform.php" method="POST">
-        <button type="submit">send</button>
-    </form>
 </div>
 </body>
